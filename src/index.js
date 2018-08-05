@@ -16,10 +16,10 @@ export function subscribe(key, cb) {
 }
 
 export default function(store) {
-  let prevState = store.getState();
+  let prevState = store.getState().toJS();
 
   store.subscribe(() => {
-    const newState = store.getState();
+    const newState = store.getState().toJS();
 
     Object.keys(subscribers).forEach(key => {
       if (get(prevState, key) !== get(newState, key)) {
